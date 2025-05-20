@@ -1,6 +1,7 @@
 from django.urls import path
-from course.views import php_course
+from course.views import learn_django, learn_fastapi
 
 urlpatterns = [
-    path('php/', php_course, name='php_course')
+    path('dj/', learn_django, name='learn_django'),
+    path('fst/', learn_fastapi, name='learn_fastapi'),
 ]
