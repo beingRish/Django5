@@ -7,3 +7,7 @@ def home(request):
 
 def myapp1(request):
     return HttpResponse("My App 1 Page")
+
+def learn_django(request, **kwargs):
+    status = kwargs.get('status', 'Not Allowed')
+    return HttpResponse(f"<h1>Hello Django {status} - App1</h1>")
