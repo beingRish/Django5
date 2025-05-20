@@ -1,32 +1,34 @@
-# Python cache
+# Ignore all Python cache files/folders recursively
 **/__pycache__/
 **/*.py[cod]
 *.pyo
 
-# SQLite DB
-Project1/db.sqlite3
+# Ignore all virtual environments by common names
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
 
-# Virtual environment
-Project1/venv/
+# Ignore SQLite databases (optional: if you use SQLite locally)
+**/db.sqlite3
 
-# Env files (if any)
-Project1/.env
-Project1/.env.*
+# Ignore environment files (for Django, Angular, etc.)
+**/.env
+**/.env.*
 
-# Static/media files (optional)
-Project1/staticfiles/
-Project1/media/
+# Ignore static/media folders (optional)
+**/staticfiles/
+**/media/
 
-# VS Code / IDE
+# Node/Angular build/cache folders (if you add Angular apps)
+**/node_modules/
+**/dist/
+**/.angular/
+
+# VSCode / IDE config
 .vscode/
 .idea/
 
-# Node/Angular (if frontend added inside Project1)
-Project1/node_modules/
-Project1/dist/
-Project1/.angular/
-Project1/frontend/.env
-
-# OS-generated files
+# OS files
 .DS_Store
 Thumbs.db
