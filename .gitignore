@@ -1,0 +1,32 @@
+# Python cache
+**/__pycache__/
+**/*.py[cod]
+*.pyo
+
+# SQLite DB
+Project1/db.sqlite3
+
+# Virtual environment
+Project1/venv/
+
+# Env files (if any)
+Project1/.env
+Project1/.env.*
+
+# Static/media files (optional)
+Project1/staticfiles/
+Project1/media/
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# Node/Angular (if frontend added inside Project1)
+Project1/node_modules/
+Project1/dist/
+Project1/.angular/
+Project1/frontend/.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db
