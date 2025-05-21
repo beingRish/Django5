@@ -3,8 +3,16 @@
     <head>
         <title>FastAPI Course</title>
     </head>
-        <body>
-            <h1>Hello {{cname}} {{version}} from Course App</h1>
-            <h2>Total seats: {{st}}</h2>
-        </body>
+    <body>
+        <h1>Hello {{cname}} {{version}} from Course App</h1>
+        <h2>Total seats: {{st}}</h2>
+        <h1 style='color:red'>Working with Complex Data:</h1>
+        <h3>{{student}}<h3>
+        {% for key, value in student.items %}
+            {{key}} - {{value}} <br />
+            {% for k, v in value.items %}
+                {{k}} - {{v}} <br />
+            {% endfor %}
+        {% endfor %}
+    </body>
 </html>

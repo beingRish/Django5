@@ -5,5 +5,88 @@
     </head>
         <body>
             <h1>Hello {{cname}} from Course App</h1>
+            
+            <h2 style='color:red'>Filters Format:</h2>
+            <h3>Name: {{cname | upper}}</h3>
+            <h3>Desc: {{desc | truncatewords:4}}</h3>
+            <h3>Desc: {{desc | upper | truncatewords:3}}</h3>
+
+            <h3>{{cname | lower}}</h3>
+            <h3>{{cname | capfirst}}</h3>
+            <h3>{{cname | default:"nothing"}}</h3>
+            <h3>{{cname | length}}</h3>
+            <h3>{{cname | slice:2}}</h3>
+            <h3>{{cname | truncatechars:3}}</h3>
+
+            {% comment %} Date Time Filters {% endcomment %}
+            <h2 style='color:red'>Date Format:</h2>
+            <h2>Date Time</h2>
+            <h3>Unformated date time: {{dt}}</h3>
+            <h3>{{dt | date}}</h3>
+            <h3>{{dt | date:'D d M Y'}}</h3>
+            <h3>{{dt | time}}</h3>
+            <h3>{{dt | time:'H:i'}}</h3>
+            <h3>{{dt | date:'SHORT_DATE_FORMAT'}}</h3>
+            <h3>{{dt | time:'TIME_FORMAT'}}</h3>
+
+            {% comment %} Float Format Filters {% endcomment %}
+            <h2 style='color:red'>Float Format:</h2>
+            <h3>{{course_price.p1}}</h3>
+            <h3>{{course_price.p2}}</h3>
+            <h3>{{course_price.p3}}</h3>
+
+            <h3>{{course_price.p1 | floatformat}}</h3>
+            <h3>{{course_price.p2 | floatformat}}</h3>
+            <h3>{{course_price.p3 | floatformat}}</h3>
+
+            <h3>{{course_price.p1 | floatformat:3}}</h3>
+            <h3>{{course_price.p2 | floatformat:3}}</h3>
+            <h3>{{course_price.p3 | floatformat:3}}</h3>
+
+            <h3>{{course_price.p1 | floatformat:0}}</h3>
+            <h3>{{course_price.p2 | floatformat:0}}</h3>
+            <h3>{{course_price.p3 | floatformat:0}}</h3>
+
+            <h3>{{course_price.p1 | floatformat:-3}}</h3>
+            <h3>{{course_price.p2 | floatformat:-3}}</h3>
+            <h3>{{course_price.p3 | floatformat:-3}}</h3>
+
+            
+            {% comment %} If tag {% endcomment %}
+            <h2 style='color:red'>If Tag:</h2>
+            {% if course_started and seat_available %}
+                <h3>Hello Students, course is already started.only {{seat_available}} seat/seats are available.</h3>
+            {% elif course_started and not seat_available %}
+                <h3>Hello Students, course is already started. seats are full now.</h3>
+            {% elif not course_started and seat_available%}
+                <h3>Hello Students, course is not started yet. {{seat_available}} seat/seats are available.</h3>
+            {% else %}
+                <h3>Hello Students, course is not started yet. seats are full now.</h3>
+            {% endif %}
+
+
+            {% comment %} For Loop {% endcomment %}
+            <h1 style='color:red'>For Loop:</h1>
+            <h4>Students Name:</h4>
+            <ul>
+                {% for name in studenst_names %}
+                    <li>{{name}}</li>
+                    {% empty %}
+                        <h4>No students enrolled yet.</h4>
+                {% endfor %}
+            </ul>
+
+            
+            <ul>
+                {% for name in studenst_names reversed %}
+                    <li>{{name}}</li>
+                {% endfor %}
+            </ul>
+
+            {% for name in studenst_names %}
+                {{forloop.counter}} {{name}} <br>
+            {% endfor %}
+
+
         </body>
 </html>
