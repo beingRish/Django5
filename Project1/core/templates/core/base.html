@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load django_bootstrap5 %}
+{% load static tailwind_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,7 @@
     </title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    {% tailwind_css %}
     {% block corecss %} <link rel="stylesheet" href="{% static 'core/css/style.css' %}"> {% endblock corecss %}
     {% block corejs %} <script src="{% static 'core/js/scripts.js' %}"></script> {% endblock corejs %}
 </head>
