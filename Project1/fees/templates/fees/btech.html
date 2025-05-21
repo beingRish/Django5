@@ -1,8 +1,12 @@
 {% extends "core/base.html" %}
-
 {% load static %}
 
 {% block title %} FEES {% endblock title %}
+
+{% block corecss %} 
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'fees/css/style.css' %}">
+{% endblock corecss %}
 
 {% block content %}
     <h1>{{fee}}</h1>
@@ -13,5 +17,6 @@
     <form action="">
         <input type="button" value="Click Me" onclick="display()">
     </form>
-    <script src="{% static 'fees/js/scripts.js' %}"></script>
+    {% block corejs %} <script src="{% static 'fees/js/scripts.js' %}"></script> {% endblock corejs %}
+    
 {% endblock content %}
