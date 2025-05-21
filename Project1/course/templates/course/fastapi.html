@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>FastAPI Course</title>
-    </head>
-    <body>
-        <h1>Hello {{cname}} {{version}} from Course App</h1>
-        <h2>Total seats: {{st}}</h2>
-        <h1 style='color:red'>Working with Complex Data:</h1>
-        <h3>{{student}}<h3>
-        {% for key, value in student.items %}
-            {{key}} - {{value}} <br />
-            {% for k, v in value.items %}
-                {{k}} - {{v}} <br />
-            {% endfor %}
+{% extends "core/base.html" %}
+
+{% block title %} FAST API {% endblock title %}
+
+{% block content %}
+    <h1>Hello {{cname}} {{version}} from Course App</h1>
+    <h2>Total seats: {{st}}</h2>
+    <h1 style='color:red'>Working with Complex Data:</h1>
+    <h3>{{student}}<h3>
+    {% for key, value in student.items %}
+        {{key}} - {{value}} <br />
+        {% for k, v in value.items %}
+            {{k}} - {{v}} <br />
         {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock content %}

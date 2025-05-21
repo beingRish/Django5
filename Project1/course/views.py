@@ -52,3 +52,6 @@ def learn_django(req):
     }
 
     return render(req, 'course/django.html', coursedetails)
+
+def learn_python(req):
+    return render(req, 'course/python.html')
