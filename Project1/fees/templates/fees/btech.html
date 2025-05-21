@@ -1,5 +1,6 @@
 {% extends "core/base.html" %}
 {% load static %}
+{% load django_bootstrap5 %}
 
 {% block title %} FEES {% endblock title %}
 
@@ -15,8 +16,7 @@
     
     <h1>{{cname}} with static Files</h1>
     <form action="">
-        <input type="button" value="Click Me" onclick="display()">
+        {% bootstrap_button button_type="submit" content="Click Me" onclick="display()" %}
     </form>
     {% block corejs %} <script src="{% static 'fees/js/scripts.js' %}"></script> {% endblock corejs %}
-    
 {% endblock content %}
