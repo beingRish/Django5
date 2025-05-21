@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.TECH</title>
+    <link rel="stylesheet" href="{% static 'fees/css/style.css' %}">
+</head>
+<body>
+    <h1>{{fee}}</h1>
+    <img alt="aws" src="{% static 'fees/images/image.png'%}" height="200px" width="200px">
+    <img alt="aws" src="{% get_static_prefix%}fees/images/image.png" height="200px" width="200px">
+    
+    <h1>{{cname}} with static Files</h1>
+    <form action="">
+        <input type="button" value="Click Me" onclick="display()">
+    </form>
+    <script src="{% static 'fees/js/scripts.js' %}"></script>
+
+</body>
+</html>
