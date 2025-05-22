@@ -8,4 +8,8 @@ h1{
 
 .test-class {
   background-color: red;
+} 
+
+nav a {
+    text-decoration: none !important;
 }
