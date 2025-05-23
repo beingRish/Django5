@@ -24,6 +24,7 @@
 **/node_modules/
 **/dist/
 **/.angular/
+**/main.css
 
 # VSCode / IDE config
 .vscode/
