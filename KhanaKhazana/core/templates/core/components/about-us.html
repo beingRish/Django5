@@ -1,0 +1,25 @@
+{% load static %}
+{% comment %} About Us Section {% endcomment %}
+<section class="bg-gradient-to-b from-orange-100 via-orange-50 to-white">
+    <div class="container mx-auto px-6 py-16">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-800">About Us</h2>
+            <p class="mt-4 text-gray-600">
+                We Provide Fresh and Healthy Food
+            </p>
+        </div>
+        <div class="flex justify-center mt-10">
+            <img src="{% static "core/images/pasta.png" %}" alt="Healthy Sushi" class="w-2/4">
+        </div>
+        {% comment %} Chef Note {% endcomment %}
+        <section class="bg-white">
+            <div class="max-w-4xl mx-auto bg-orange-100 p-6 rounded-lg shadow-lg">
+                <p class="text-gray-800 text-xl font-light italic">
+                    Dear Guest,<br><br>
+                    Our passion is to serve you a meal that not only delights your taste buds but also warms your heart. Each dish is crafted with the freshest ingredients and a touch of love, ensuring an unforgettable dining experience. Let us take you on a culinary journey that you'll savor long after the last bite. We hope you enjoy every moment!<br><br>
+                    <span class="text-orange-500 font-medium" style="font-family: 'Dancing Script', cursive;">Chef, Rishabh</span>
+                </p>
+            </div>
+        </section>
+    </div>
+</section>
