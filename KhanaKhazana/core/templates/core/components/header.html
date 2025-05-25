@@ -1,9 +1,9 @@
 <header class="w-full bg-orange-100">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <div class="container mx-auto flex justify-between items-center py-4 px-24">
         <a href="{% url 'home' %}" class="text-4xl font-bold text-orange-500" style="font-family: 'Dancing Script', cursive;">Khana Khazana</a>
-            {% block navbar %}
-                {% include "core/components/navbar.html" %}
-            {% endblock navbar %}
+        {% block navbar %}
+            {% include "core/components/navbar.html" %}
+        {% endblock navbar %}
         <div class="flex space-x-4 items-center">
             <input type="text" placeholder="Search" class="border rounded-lg px-2 py-1 focus:outline-none bg-orange-100">
             <div class="relative">
