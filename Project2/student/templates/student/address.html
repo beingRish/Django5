@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Address Page</h1>
+    <form action="">
+        {% for field in form %}
+            <label
+                for="{{field.id_for_label}}"
+                class="">{{field.label}}
+            </label>
+            <input
+                class=""
+                type="{{field.field.widget.input_type}}"
+                name="{{field.name}}"
+                id="{{field.id_for_label}}"
+                value="{{field.value|default:''}}"
+                required="{{field.field.required}}"
+                placeholder="{{field.field.widget.attrs.placeholder|default:''}}"
+            ><br>
+        {% endfor %}
+    </form>
+</body>
+</html>

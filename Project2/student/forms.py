@@ -6,7 +6,13 @@ class Registration(forms.Form):
     email = forms.EmailField()
     city = forms.CharField()
 
-
 class Login(forms.Form):
     email = forms.EmailField()
     password = forms.CharField()
+    key = forms.CharField(widget=forms.HiddenInput())
+
+class Address(forms.Form):
+    name = forms.CharField()
+    city = forms.CharField()
+    state = forms.CharField()
+    pin_code = forms.IntegerField()

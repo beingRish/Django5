@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from student.models import Profile
-from student.forms import Registration, Login
+from student.forms import Registration, Login, Address
 
 # Create your views here.
 def all_data(req):
@@ -34,3 +34,7 @@ def login(req):
     # form = Login(initial={'email': 'rishabh@example.com', 'password': 'rishabh12345'})
 
     return render(req,  'student/login.html', {'form': form})
+
+def address(req):
+    form = Address()
+    return render(req,  'student/address.html', {'form': form})
