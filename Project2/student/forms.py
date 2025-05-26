@@ -2,10 +2,9 @@ from django import forms
 from django.core.validators import MinLengthValidator, RegexValidator
 
 class Registration(forms.Form):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    name = forms.CharField()
     email = forms.EmailField()
-    city = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 class Login(forms.Form):
     email = forms.EmailField()
