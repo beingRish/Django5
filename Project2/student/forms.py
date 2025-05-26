@@ -1,10 +1,20 @@
 from django import forms
-from django.core.validators import MinLengthValidator, RegexValidator
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+
+def starts_with_r(value):
+    if value[0] != 'r':
+        raise forms.ValidationError('Email should start with "r"')
 
 class Registration(forms.Form):
     name = forms.CharField()
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(validators=[starts_with_r])
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        validators=[
+            MaxLengthValidator(10),
+            MinLengthValidator(4)
+        ]
+    )
 
     def clean(self):
         cleaned_data = super().clean()
