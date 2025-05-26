@@ -1,5 +1,5 @@
 from django.urls import path
-from student.views import all_data, single_data, registration, login, address
+from student.views import all_data, single_data, registration, login, address, demo_form
 
 urlpatterns = [
     path('all/', all_data, name='all_data'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('register/', registration, name='registration'),
     path('login/', login, name='login'),
     path('address/', address, name='address'),
+    path('demo-form/', demo_form, name='demo_form'),
 ]
