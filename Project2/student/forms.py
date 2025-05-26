@@ -6,6 +6,20 @@ class Registration(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+    def clean(self):
+        cleaned_data = super().clean()
+        name_value = cleaned_data.get('name')
+        email_value = cleaned_data.get('email')
+
+        if name_value and len(name_value) < 4:
+            self.add_error('name', 'Enter more than or equal 4 chars')
+        
+        if email_value and len(email_value) < 10:
+            self.add_error('email', 'Enter more than or equal 10 chars')
+
+        return cleaned_data
+
+
 class Login(forms.Form):
     email = forms.EmailField()
     password = forms.CharField()
