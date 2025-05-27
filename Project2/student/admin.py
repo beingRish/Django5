@@ -11,4 +11,4 @@ class ResultAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'password']
+    list_display = ['id', 'name', 'teacher_name', 'email', 'password']

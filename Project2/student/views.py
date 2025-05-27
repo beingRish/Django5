@@ -3,7 +3,7 @@ from student.models import Profile
 from student.forms import Login, Address, DemoForm
 from django.http import HttpResponseRedirect
 from student.models import User
-from student.modelForm import Registration
+from student.modelForm import StudentRegistration, TeacherRegistration
 
 # Create your views here.
 def all_data(req):
@@ -18,9 +18,9 @@ def single_data(req):
     print(single_student)
     return render(req, 'student/single.html', {'student': single_student})
 
-def registration(req):
+def student_form_view(req):
     if req.method == 'POST':
-        form = Registration(req.POST)
+        form = StudentRegistration(req.POST)
         if form.is_valid():
             nm = form.cleaned_data['name']
             em = form.cleaned_data['email']
@@ -36,10 +36,23 @@ def registration(req):
             # Delete Data from Database
             # user = User(id=2)
             # user.delete()
-            return HttpResponseRedirect('/student/register/')
+            return HttpResponseRedirect('/student/student-register/')
     else:
-        form = Registration()
-    return render(req,  'student/registration.html', {'form': form})
+        form = StudentRegistration()
+    return render(req,  'student/student_registration.html', {'form': form})
+
+def teacher_form_view(req):
+    if req.method == 'POST':
+        form = TeacherRegistration(req.POST)
+        if form.is_valid():
+            tnm = form.cleaned_data['teacher_name']
+            em = form.cleaned_data['email']
+            pw = form.cleaned_data['password']
+            user = User(teacher_name=tnm, email=em, password=pw)
+            user.save()
+    else:
+        form = TeacherRegistration()
+    return render(req,  'student/teacher_registration.html', {'form': form})
 
 def reg_success(req):
     return render(req, 'student/success.html')

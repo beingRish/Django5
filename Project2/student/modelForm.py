@@ -1,13 +1,12 @@
 from django import forms
 from student.models import User
 
-class Registration(forms.ModelForm):
-    name = forms.CharField(max_length=50, required=False)
+class StudentRegistration(forms.ModelForm):
     confirm_password = forms.CharField()
     class Meta:
         model = User
-        # fields = ['name', 'email', 'password']
-        fields = '__all__'
+        fields = ['name', 'email', 'password']
+        # fields = '__all__'
         labels = {
             'name': "Enter Name",
             'email': "Enter Email",
@@ -28,3 +27,7 @@ class Registration(forms.ModelForm):
             'password': forms.PasswordInput(attrs={'class': 'pwdclass'}),
             'name': forms.TextInput(attrs={'class': 'myclass', 'placeholder': 'Enter your name'})
         }
+
+class TeacherRegistration(StudentRegistration):
+    class Meta(StudentRegistration.Meta):
+        fields = ['teacher_name', 'email', 'password']
