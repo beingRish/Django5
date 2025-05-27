@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from student.models import Profile
-from student.forms import Registration, Login, Address, DemoForm
+from student.forms import Login, Address, DemoForm
 from django.http import HttpResponseRedirect
 from student.models import User
+from student.modelForm import Registration
 
 # Create your views here.
 def all_data(req):
@@ -24,14 +25,16 @@ def registration(req):
             nm = form.cleaned_data['name']
             em = form.cleaned_data['email']
             pw = form.cleaned_data['password']
+            cpw = form.cleaned_data['confirm_password']
             # Save Data into Database
+            # Syntax:- save(commit=False/True)
             user = User(name=nm, email=em, password=pw)
             user.save()
             # Update Data into Database
             # user = User(id=1, name=nm, email=em, password=pw)
             # user.save()
             # Delete Data from Database
-            # user = User(id=1)
+            # user = User(id=2)
             # user.delete()
             return HttpResponseRedirect('/student/register/')
     else:
