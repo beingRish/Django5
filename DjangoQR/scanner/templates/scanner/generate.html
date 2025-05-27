@@ -21,6 +21,13 @@
             >
             <button type="submit">Generate</button>
         </form>
+
+        <div class="qr-preview">
+            {% if qr_image_url %}
+                <h2>Your QR Code:</h2>
+                <img src="{{qr_image_url}}" alt="Generated QR Code">
+            {% endif %}
+        </div>
     </div>
 </div>
 
