@@ -6,14 +6,17 @@ def starts_with_r(value):
         raise forms.ValidationError('Email should start with "r"')
 
 class Registration(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField(validators=[starts_with_r])
+    error_css_class = 'myerror'
+    required_css_class = 'required'
+    name = forms.CharField(error_messages={'required': 'Name is Required'})
+    email = forms.EmailField(validators=[starts_with_r, MinLengthValidator(10)], error_messages={'required': 'Email is Required'})
     password = forms.CharField(
         widget=forms.PasswordInput,
         validators=[
             MaxLengthValidator(10),
             MinLengthValidator(4)
-        ]
+        ],
+        error_messages={'required': 'Password is Required'}
     )
 
     def clean(self):

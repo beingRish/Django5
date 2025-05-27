@@ -4,13 +4,45 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            .errorlist{
+                color: red
+            }
+        </style>
     </head>
     <body>
         <h1>Student Registration</h1>
-        <form action="" method="post" novalidate>
+        {% comment %} <form action="" method="post" novalidate>
             {% csrf_token %}
             {{form}}
             <button>Submit</button>
+        </form> {% endcomment %}
+        {% comment %} <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    {{field.label_tag}} {{field}} <span style="color: red">{{field.errors|striptags}}</span>
+                </div>
+            {% endfor %}
+            <button>Submit</button>
+        </form> {% endcomment %}
+        {% comment %} <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {% form.non_field_errors%}
+            {% for field in form %}
+                <div>
+                    {{field.label_tag}} {{field}}
+                    {% for error in field.errors %}
+                        <span style="color: red">{{error|striptags}}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button>Submit</button>
+        </form> {% endcomment %}
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Submit">
         </form>
         {% comment %} <form action="">
             <table>
