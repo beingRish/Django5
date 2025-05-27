@@ -1,5 +1,5 @@
 from django.contrib import admin
-from student.models import Profile, Result
+from student.models import Profile, Result, User
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -8,3 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
     list_display = ['id', 'stu_class', 'marks']
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'email', 'password']

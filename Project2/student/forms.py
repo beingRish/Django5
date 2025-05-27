@@ -9,7 +9,7 @@ class Registration(forms.Form):
     error_css_class = 'myerror'
     required_css_class = 'required'
     name = forms.CharField(error_messages={'required': 'Name is Required'})
-    email = forms.EmailField(validators=[starts_with_r, MinLengthValidator(10)], error_messages={'required': 'Email is Required'})
+    email = forms.EmailField(validators=[MinLengthValidator(10)], error_messages={'required': 'Email is Required'})
     password = forms.CharField(
         widget=forms.PasswordInput,
         validators=[

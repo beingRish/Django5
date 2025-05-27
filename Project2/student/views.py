@@ -2,6 +2,7 @@ from django.shortcuts import render
 from student.models import Profile
 from student.forms import Registration, Login, Address, DemoForm
 from django.http import HttpResponseRedirect
+from student.models import User
 
 # Create your views here.
 def all_data(req):
@@ -20,13 +21,19 @@ def registration(req):
     if req.method == 'POST':
         form = Registration(req.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            print('name: ', name)
-            print('email: ', email)
-            print('password: ', password)
-            return HttpResponseRedirect('/student/success')
+            nm = form.cleaned_data['name']
+            em = form.cleaned_data['email']
+            pw = form.cleaned_data['password']
+            # Save Data into Database
+            user = User(name=nm, email=em, password=pw)
+            user.save()
+            # Update Data into Database
+            # user = User(id=1, name=nm, email=em, password=pw)
+            # user.save()
+            # Delete Data from Database
+            # user = User(id=1)
+            # user.delete()
+            return HttpResponseRedirect('/student/register/')
     else:
         form = Registration()
     return render(req,  'student/registration.html', {'form': form})
