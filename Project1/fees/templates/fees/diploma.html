@@ -1,8 +1,11 @@
 
 {% extends "core/base.html" %}
+{% load customfilter %}
 
 {% block title %} Dploma {% endblock title %}
 
 {% block content %}
     <h1>Diploma Fee</h1>
+        <h1>Custom Filters</h1>
+        <h2>{{data|iamToweare:'I am'}}</h2>
 {% endblock content %}

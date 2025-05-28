@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load django_bootstrap5 %}
-{% load static tailwind_tags %}
+{% comment %} {% load static tailwind_tags %} {% endcomment %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
     </title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    {% tailwind_css %}
+    {% comment %} {% tailwind_css %} {% endcomment %}
     {% block corecss %}
       <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
     {% endblock %}
