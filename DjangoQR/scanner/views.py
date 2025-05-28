@@ -70,7 +70,7 @@ def scan_qr(request):
                     qr_entry.delete()
 
                     # Delete the original QR image file
-                    qr_image_path = Path(settings.MEDIA_ROOT) / 'qr_codes' / f"{qr_data}_{qr_mobile_number}.png"
+                    qr_image_path = settings.MEDIA_ROOT / 'qr_codes' / f"{qr_data}_{qr_mobile_number}.png"
                     if qr_image_path.exists():
                         qr_image_path.unlink()
 
