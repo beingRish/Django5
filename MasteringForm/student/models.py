@@ -53,15 +53,14 @@ class Profile(models.Model):
     locality = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     pin = models.PositiveIntegerField(
-        validators=[validate_pin_length],
-        help_text='Enter 6-digit pin code'
+        validators=[validate_pin_length]
     )
     state = models.CharField(choices=STATE_CHOICE, max_length=100)
     mobile = models.CharField(
         max_length=100,
-        validators=[RegexValidator(regex=r'^\d{10}$')],
-        help_text='Enter a 10-digit mobile number'
+        validators=[RegexValidator(regex=r'^\d{10}$')]
     )
     email = models.EmailField()
     job_city = models.CharField(max_length=50)
-    profile_image = models.ImageField(upload_to='doc', blank=True)
+    profile_image = models.ImageField(upload_to='profileimg', blank=True)
+    my_file = models.FileField(upload_to='doc', blank=True)
