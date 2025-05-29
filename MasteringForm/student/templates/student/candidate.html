@@ -1,4 +1,5 @@
 {% extends "student/base.html" %}
+{% load customfilter %}
 {% block left-content %}
 <h1>Candidate Detail</h1>
 <p class="float-end">Application No: {{candidate.id}}</p>
@@ -9,7 +10,7 @@
 <p>Address: {{candidate.locality}}, {{candidate.city}}, {{candidate.state}} - {{candidate.pin}}</p>
 <p>Mobile No: {{candidate.mobile}}</p>
 <p>Email ID: {{candidate.email}}</p>
-<p>Preferred Job Cities: {{candidate.job_city}}</p>
+<p>Preferred Job Cities: {{candidate.job_city|remove_char:"[]'"}}</p>
 <p>Attachment: <a href="{{candidate.my_file.url}}">Download File</a></p>
 <div class="text-center">
     <a href="/" class="btn btn-danger">Back to Home</a>
