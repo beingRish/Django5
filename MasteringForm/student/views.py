@@ -3,6 +3,7 @@ from student.forms import ProfileForm
 from student.models import Profile
 
 def home(request):
+    candidates = Profile.objects.all()
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -10,4 +11,8 @@ def home(request):
             return redirect('home')
     else:
         form = ProfileForm()
-    return render(request, 'student/home.html', {'form': form})
+    return render(request, 'student/home.html', {'form': form, 'candidates': candidates})
+
+def candidate_detail(request, pk):
+    candidate = Profile.objects.get(pk=pk)
+    return render(request, 'student/candidate.html', {'candidate':candidate})
