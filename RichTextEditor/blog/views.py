@@ -3,7 +3,7 @@ from blog.forms import CreatePostForm
 from blog.forms import Post
 
 def home(request):
-    blog_posts = Post.objects.all()
+    posts = Post.objects.all()
     if request.method == 'POST':
         print(f'request:{request}')
         form = CreatePostForm(request.POST)
@@ -12,4 +12,4 @@ def home(request):
             return redirect('home')
     else:
         form = CreatePostForm()
-    return render(request, 'blog/home.html', {'form': form, 'blog_posts': blog_posts})
+    return render(request, 'blog/home.html', {'form': form, 'posts': posts})

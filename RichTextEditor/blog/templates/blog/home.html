@@ -1,16 +1,6 @@
 {% extends "blog/base.html" %}
 {% block left-content %}
-<h4 class="text-center mb-3">
-    <u>List of Blogs</u>
-</h4>
-{% for post in blog_posts %}
-    {{post.title}}
-    {{post.content|safe}}
-    <hr>
-{% endfor %}
-{% endblock left-content %}
-{% block right-content %}
-<h1>Create blog Post</h1>
+<h2>Create blog Post</h2>
 <form action="#" method="POST">
     {% csrf_token %}
     {{ form.media }}
@@ -42,6 +32,33 @@
     </div>
 
     {% comment %} {{form.as_p}} {% endcomment %}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="btn btn-primary">
 </form>
+{% endblock left-content %}
+{% block right-content %}
+<div>
+    <h4 class="text-center mb-3">
+        <u>List of Blogs</u>
+    </h4>
+    {% for post in posts %}
+        <div class="container mt-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{{post.title}}</h5>
+                    <span class="badge bg-light text-dark">Blog No: {{ post.id }}</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title text-primary mb-3">{{ blog.name }}</h4>
+                    <div class="ck-content">
+                        {{ post.content|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
 {% endblock right-content %}
