@@ -17,8 +17,6 @@
         {% endif %}
     </div>
 
-    
-
     <div class="mb-3">
         <label for="{{ form.content.id_for_label }}" class="form-label">{{form.content.label}}</label>
         {{form.content}}
@@ -37,28 +35,46 @@
 {% endblock left-content %}
 {% block right-content %}
 <div>
-    <h4 class="text-center mb-3">
-        <u>List of Blogs</u>
-    </h4>
-    {% for post in posts %}
-        <div class="container mt-4">
-            <div class="card shadow-sm">
+    {% if selected_post %}
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="">Blog Content</h4>
+            <button type="button" class="btn btn-dark btn-sm"><a href="{% url 'home' %}" class="text-decoration-none text-light">Back to list</a></button>
+        </div>
+
+        <div class="container mt-3">
+            <div class="card shadow-sm" style="max-height: 78vh; min-height: 78vh">
                 <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">{{post.title}}</h5>
-                    <span class="badge bg-light text-dark">Blog No: {{ post.id }}</span>
+                    <h5 class="mb-0">{{selected_post.title}}</h5>
+                    <span class="badge bg-light text-dark">Blog No: {{ selected_post.id }}</span>
                 </div>
-                <div class="card-body">
-                    <h4 class="card-title text-primary mb-3">{{ blog.name }}</h4>
+                <div class="card-body overflow-auto" style="max-height: 65vh; min-height: 65vh">
+                    <h4 class="card-title text-primary mb-3">{{ selected_post.name }}</h4>
                     <div class="ck-content">
-                        {{ post.content|safe }}
+                        {{ selected_post.content|safe }}
                     </div>
                 </div>
             </div>
         </div>
-    {% endfor %}
+        {% else %}
+        <h4 class="text-center mb-5">
+            <u>List of Blogs</u>
+        </h4>   
+        {% for post in posts %}
+        <a href="?blog_id={{ post.id }}" class="text-decoration-none text-dark">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center bg-light rounded"
+                    style="cursor: pointer;" 
+                    onmouseover="this.classList.add('bg-secondary-subtle')" 
+                    onmouseout="this.classList.remove('bg-secondary-subtle')"
+                >
+                    <span class="fw-bold text-primary">#{{ post.id }}</span>
+                    <span>
+                        {{ post.title }}
+                    </span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    {% endif %}
 </div>
-
-
-
-
 {% endblock right-content %}
