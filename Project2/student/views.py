@@ -4,6 +4,7 @@ from student.forms import Login, Address, DemoForm
 from django.http import HttpResponseRedirect
 from student.models import User
 from student.modelForm import StudentRegistration, TeacherRegistration
+from django.contrib import messages
 
 # Create your views here.
 def all_data(req):
@@ -36,7 +37,8 @@ def student_form_view(req):
             # Delete Data from Database
             # user = User(id=2)
             # user.delete()
-            return HttpResponseRedirect('/student/student-register/')
+            messages.success(req, "Registeration Success !!!")
+            # return HttpResponseRedirect('/student/student-register/')
     else:
         form = StudentRegistration()
     return render(req,  'student/student_registration.html', {'form': form})

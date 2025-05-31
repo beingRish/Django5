@@ -67,5 +67,11 @@
             {{form.city}}
             <input type="submit" value="Submit">
         </form> {% endcomment %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <span style="color: green">{{message}}</span>         
+            {% endfor %}
+        {% endif %}
     </body>
 </html>
