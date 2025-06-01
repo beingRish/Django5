@@ -22,3 +22,15 @@ def book_list(request):
 def book_detail(request, pk):
     book = Book.objects.get(pk=pk)
     return render(request, 'book/book_detail.html', {'book': book})
+
+def book_update(request, pk):
+    book = Book.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Book updated Successfully!')
+            return redirect('book-update', pk=book.pk)
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'book/book_form.html', {'form': form, 'is_edit': True})

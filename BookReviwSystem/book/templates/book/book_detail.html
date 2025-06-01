@@ -12,20 +12,24 @@
             <h5 class="card-title">Author:</h5>
             <p class="card-text">{{ book.author }}</p>
 
-            <h5 class="card-title">Description:</h5>
-            <p class="card-text">{{ book.description }}</p>
-
             <h5 class="card-title">Genre:</h5>
             <p class="card-text">{{ book.genre }}</p>
-
+            
             <h5 class="card-title">ISBN:</h5>
             <p class="card-text">{{ book.isbn }}</p>
-
+            
             <h5 class="card-title">Publication Date:</h5>
             <p class="card-text">{{ book.publication_date }}</p>
+
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">{{ book.description }}</p>
         </div>
-        <div class="card-footer text-end">
+        <div class="card-footer d-flex justify-content-between">
             <a href="{% url 'book-list' %}" class="btn btn-secondary">Back to List</a>
+            <div>
+                <a href="{% url 'book-update' book.id %}" class="btn btn-warning me-2">Edit</a>
+                <a href="" class="btn btn-danger">Delete</a>
+            </div>
         </div>
     </div>
 </div>
