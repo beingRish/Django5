@@ -1,0 +1,32 @@
+{% extends "book/base.html" %}
+
+{% block title %}Book Details{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">{{ book.title }}</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Author:</h5>
+            <p class="card-text">{{ book.author }}</p>
+
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">{{ book.description }}</p>
+
+            <h5 class="card-title">Genre:</h5>
+            <p class="card-text">{{ book.genre }}</p>
+
+            <h5 class="card-title">ISBN:</h5>
+            <p class="card-text">{{ book.isbn }}</p>
+
+            <h5 class="card-title">Publication Date:</h5>
+            <p class="card-text">{{ book.publication_date }}</p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'book-list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
