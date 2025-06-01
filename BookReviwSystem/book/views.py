@@ -34,3 +34,9 @@ def book_update(request, pk):
     else:
         form = BookForm(instance=book)
     return render(request, 'book/book_form.html', {'form': form, 'is_edit': True})
+
+def book_delete(request, pk):
+    book = Book.objects.get(pk=pk)
+    book.delete()
+    messages.success(request, 'Book deleted successfully!')
+    return redirect('book-list')
