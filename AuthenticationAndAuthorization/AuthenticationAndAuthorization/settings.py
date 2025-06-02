@@ -126,3 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # To Use Custom User Model
 AUTH_USER_MODEL = 'account.User'
+
+SITE_DOMAIN = 'http://127.0.0.1:8000/'
+SITE_NAME = 'Auth System'
