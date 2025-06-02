@@ -137,3 +137,6 @@ EMAIL_HOST_USER = 'api'
 EMAIL_HOST_PASSWORD = 'fcb822a396d33956d4287c62b20d6892'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
+
+# When user click on logout button below will be used to redirect user to login page
+LOGOUT_REDIRECT_URL = 'login'
