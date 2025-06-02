@@ -129,3 +129,11 @@ AUTH_USER_MODEL = 'account.User'
 
 SITE_DOMAIN = 'http://127.0.0.1:8000/'
 SITE_NAME = 'Auth System'
+
+# Mail Trap Email Configuration
+EMAIL_BAKEND = "django.core.mail.backends.smtp.EmailBackeend"
+EMAIL_HOST = 'live.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'api'
+EMAIL_HOST_PASSWORD = 'fcb822a396d33956d4287c62b20d6892'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
