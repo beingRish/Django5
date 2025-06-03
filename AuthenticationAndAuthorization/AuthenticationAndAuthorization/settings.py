@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account',
     'customer',
     'seller',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,13 @@ AUTH_USER_MODEL = 'account.User'
 SITE_DOMAIN = 'http://127.0.0.1:8000/'
 SITE_NAME = 'Auth System'
 
+# Mail Trap Email Configuration
+EMAIL_BAKEND = "django.core.mail.backends.smtp.EmailBackeend"
+EMAIL_HOST = 'live.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'api'
+EMAIL_HOST_PASSWORD = '2494b01c051c84621af646006d48ce28'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 
 # When user click on logout button below will be used to redirect user to login page
 LOGOUT_REDIRECT_URL = 'login'
