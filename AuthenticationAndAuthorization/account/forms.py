@@ -2,6 +2,12 @@ from django import forms
 from account.models import User
 
 class RegistrationForm(forms.ModelForm):
+    ROLE_CHOICES = (
+        ('customer', 'Customer'),
+        ('seller', 'Seller'),
+    )
+
+    role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.Select)
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
