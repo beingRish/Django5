@@ -13,7 +13,7 @@ class UserModelAdmin(UserAdmin):
     fieldsets = [
         ("User Credentials", {"fields": ["email", "password"]}),
         ("Personal Information", {"fields": ["name", "city"]}),
-        ("Permissions", {"fields": ["is_active", "is_staff", "is_superuser", "is_customer", "is_seller"]}),
+        ("Permissions", {"fields": ["is_active", "is_staff", "is_superuser", "is_customer", "is_seller", "groups", "user_permissions"]}),
     ]
     add_fieldsets = [
         (
