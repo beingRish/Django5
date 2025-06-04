@@ -2,6 +2,7 @@
 **/__pycache__/
 **/*.py[cod]
 *.pyo
+**/settings.py
 
 # Ignore all virtual environments by common names
 **/venv/
