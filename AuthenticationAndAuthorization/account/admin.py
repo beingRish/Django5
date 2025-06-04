@@ -27,7 +27,7 @@ class UserModelAdmin(UserAdmin):
     ]
     search_fields = ["email"]
     ordering = ["email", "id"]
-    filter_horizontal = []
+    filter_horizontal = ["groups", "user_permissions"]
 
 # Now register the new UserModelAdmin
 admin.site.register(User, UserModelAdmin)

@@ -52,8 +52,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Only Superuser have permission to access all data
-        return self.is_superuser
+        if self.is_superuser:
+            return True
+        return super().has_perm(perm, obj)
     
     def has_module_perms(self, app_label):
         "Does the user have a permissions to view the app `app_label`?"
-        return self.is_superuser
+        if self.is_superuser:
+            return True
+        return super().has_module_perms(app_label)

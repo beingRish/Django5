@@ -10,6 +10,7 @@ from account.utils import send_activation_email, send_reset_password_email
 from account.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import SetPasswordForm
+from core.utils import assign_permission
 
 
 def home(request):
@@ -76,6 +77,9 @@ def register_view(request):
                 user.is_customer = True
 
             user.save()
+
+            assign_permission(user, role)
+
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
             activation_link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token})
