@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+{% block title %}Product List{% endblock title %}
+{% load static %}
+
+{% block content %}
+<div class="px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-white mb-6">Product List</h2>
+
+        {% if products %}
+            <div class="space-y-4">
+                {% for product in products %}
+                    <a href="{% url 'product_detail' product.pk %}" class="block bg-gray-800 rounded-lg shadow-md p-5 text-white hover:bg-gray-700 transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-semibold">{{ product.name }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-gray-400">No products available.</p>
+        {% endif %}
+
+        <div class="text-center mt-8">
+            <a href="{% url 'product_add' %}" class="inline-block px-6 py-2 text-white bg-rose-600 rounded hover:bg-rose-700">
+                Add New Product
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
