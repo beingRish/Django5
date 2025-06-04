@@ -1,17 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import permission_required
 from product.models import Product
 from product.forms import ProductForm
 
+
+@permission_required('product.view_product', raise_exception=True)
 def product_list(requst):
     products = Product.objects.all()
     return render(requst, 'product/list.html', {'products': products})
 
 
+@permission_required('product.view_product', raise_exception=True)
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'product/detail.html', {'product': product})
 
 
+@permission_required('product.add_product', raise_exception=True)
 def product_add(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -23,6 +28,7 @@ def product_add(request):
     return render(request, 'product/add.html', {'form': form})
     
 
+@permission_required('product.change_product', raise_exception=True)
 def product_edit(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
@@ -35,6 +41,7 @@ def product_edit(request, pk):
     return render(request, 'product/add.html', {'form': form})    
 
 
+@permission_required('product.delete_product', raise_exception=True)
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':

@@ -6,16 +6,20 @@
         <h1 class="text-3xl font-bold text-center mb-6">Seller Dashboard</h1>
 
         <ul class="space-y-4 text-center text-lg">
-            <li>
-                <a href="{% url 'product_list' %}" class="text-rose-400 hover:underline">
-                    View Product List
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'product_add' %}" class="text-rose-400 hover:underline">
-                    Add a New Product
-                </a>
-            </li>
+            {% if perms.product.view_product %}
+                <li>
+                    <a href="{% url 'product_list' %}" class="text-rose-400 hover:underline">
+                        View Product List
+                    </a>
+                </li>
+            {% endif %}
+            {% if perms.product.add_product %}
+                <li>
+                    <a href="{% url 'product_add' %}" class="text-rose-400 hover:underline">
+                        Add a New Product
+                    </a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </div>
