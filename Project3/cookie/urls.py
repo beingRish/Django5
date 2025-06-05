@@ -1,5 +1,5 @@
 from django.urls import path
-from student.views import setcookie, getcookie, delcookie, setsignedcookie, getsignedcookie
+from cookie.views import setcookie, getcookie, delcookie, setsignedcookie, getsignedcookie
 
 urlpatterns = [
     path('set/', setcookie),
