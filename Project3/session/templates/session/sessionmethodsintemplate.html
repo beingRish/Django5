@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Method in Template</title>
+</head>
+<body>
+    <ul>
+        {% for key in keys %}
+            <li>{{key}}</li><br>
+        {% endfor %}
+    </ul>
+     
+    <hr>
+    
+    <ul>
+        {% for key, value in items %}
+            <li>{{key}} : {{value}}</li><br>
+        {% endfor %}
+    </ul>
+     
+    <hr>
+    
+    <ul>
+        <li>{{request.session.get_session_cookie_age}}</li><br>
+        <li>{{request.session.get_expiry_age}}</li><br>
+        <li>{{request.session.get_expiry_date}}</li><br>
+        <li>{{request.session.get_expire_at_browser_close}}</li><br>
+    </ul>
+
+
+</body>
+</html>

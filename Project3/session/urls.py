@@ -7,7 +7,7 @@ urlpatterns = [
     path('del/', delsession),
     path('flush/', flushsession),
     path('inview/', sessionmethodsinview),
-    path('intemplatet/', sessionmethodsintemplate),
+    path('intemplate/', sessionmethodsintemplate),
     path('clear/', sessionclear),
     path('settest/', settestcookie),
     path('checktest/', checktestcookie),
