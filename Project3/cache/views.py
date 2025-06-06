@@ -5,7 +5,7 @@ def home(request):
     return render(request, 'cache/home.html')
 
 
-@cache_page(30)
+# @cache_page(30)
 def course(request):
     return render(request, 'cache/course.html')
 

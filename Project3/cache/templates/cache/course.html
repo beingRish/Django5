@@ -1,3 +1,4 @@
+{% load cache %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,9 @@
 </head>
 <body>
     <h1>Course 1</h1>
-    <h1>Course 4</h1>
-    <h1>Course 1</h1>
-    <h1>Course 4</h1>
+
+    {% cache 30 mycourse %}
+        <h1>Course 3</h1>
+    {% endcache %}
 </body>
 </html>
