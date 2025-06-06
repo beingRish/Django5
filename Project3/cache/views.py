@@ -50,6 +50,6 @@ def result(request):
 #     return render(request, 'cache/movie.html')
 
 
-# def movie(request):
-#     cache.clear() // Do not clear cache from the view, always do with terminal
-#     return render(request, 'cache/movie.html')
+def movie(request):
+    cache.clear() # Do not clear cache from the view, always do with terminal
+    return render(request, 'cache/movie.html')
