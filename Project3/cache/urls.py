@@ -1,5 +1,5 @@
 from django.urls import path
-from cache.views import home, course, result
+from cache.views import home, course, result, movie
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('index', cache_page(90)(home), name="home"),
     path('course/', course, name="course"),
     path('result/', cache_page(30)(result), name="result"),
+    path('movie/', movie, name="movie"),
 ]
