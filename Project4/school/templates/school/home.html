@@ -19,16 +19,18 @@
         <th>City</th>
         <th>Marks</th>
         <th>Passing Year</th>
-        {% for data in all_data %}
+        {% comment %} {% for student in students %} {% endcomment %}
             <tr>
-                <td>{{data.id}}</td>
-                <td>{{data.name}}</td>
-                <td>{{data.roll}}</td>
-                <td>{{data.city}}</td>
-                <td>{{data.marks}}</td>
-                <td>{{data.pass_date}}</td>
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.roll}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.marks}}</td>
+                <td>{{student.pass_date}}</td>
             </tr>
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
     </table>
+
+
 </body>
 </html>
