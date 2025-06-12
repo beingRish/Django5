@@ -33,3 +33,14 @@ class Post(models.Model):
     # user = models.ForeignKey(User, on_delete=models.PROTECT)
     # user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
+
+
+
+# Many to Many Relationship
+class Song(models.Model):
+    user = models.ManyToManyField(User)
+    title = models.CharField(max_length=255)
+
+
+    def written_by(self):
+        return ",".join([str(p) for p in self.user.all()])

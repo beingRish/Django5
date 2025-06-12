@@ -1,5 +1,5 @@
 from django.contrib import admin
-from myapp.models import Profile, Page, Like, Post
+from myapp.models import Profile, Page, Like, Post, Song
 
 
 @admin.register(Profile)
@@ -20,3 +20,8 @@ class LikeAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'user']
+
+
+@admin.register(Song)
+class SongAdmin(admin.ModelAdmin):
+    list_display = ['title', 'written_by']
