@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from school.models import Student, Teacher
-from django.db.models import Avg, Sum, Min, Max, Count
+from django.db.models import Avg, Sum, Min, Max, Count, Q
 from datetime import date, time
 
 # # This home view is for 'Working with Database Returns New Queryset'
@@ -202,26 +202,46 @@ from datetime import date, time
 
 
 
-# This home view is for 'Working with Database Aggregate Function'
+# # This home view is for 'Working with Database Aggregate Function'
+# def home(request):
+#     student_data = Student.objects.all()
+#     average = student_data.aggregate(Avg('marks'))
+#     total = student_data.aggregate(Sum('marks'))
+#     minimum = student_data.aggregate(Min('marks'))
+#     maximum = student_data.aggregate(Max('marks'))
+#     totalCount = student_data.aggregate(Count('marks'))
+
+#     context = {
+#         'students': student_data,
+#         'average': average,
+#         'total': total,
+#         'minimum': minimum,
+#         'maximum': maximum,
+#         'totalCount': totalCount,
+#     }
+    
+#     print("Return: ", student_data)
+#     return render(request, 'school/home.html', context)
+
+
+
+
+
+
+
+
+# This home view is for 'Working with Database Q Objects'
 def home(request):
-    student_data = Student.objects.all()
-    average = student_data.aggregate(Avg('marks'))
-    total = student_data.aggregate(Sum('marks'))
-    minimum = student_data.aggregate(Min('marks'))
-    maximum = student_data.aggregate(Max('marks'))
-    totalCount = student_data.aggregate(Count('marks'))
-
-
-
-
+    # student_data = Student.objects.all()
+    # student_data = Student.objects.filter(  Q(id=2) & Q(roll=102)   )
+    # student_data = Student.objects.filter(  Q(id=2) | Q(roll=103)   )
+    # student_data = Student.objects.filter(  ~Q(id=2)   )
+    # student_data = Student.objects.filter(  Q(city='bokaro') & Q(marks__gt=100)   )
+    student_data = Student.objects.filter(  Q(city='bokaro') | Q(marks__gt=100)   )
+    
 
     context = {
         'students': student_data,
-        'average': average,
-        'total': total,
-        'minimum': minimum,
-        'maximum': maximum,
-        'totalCount': totalCount,
     }
     
     print("Return: ", student_data)
