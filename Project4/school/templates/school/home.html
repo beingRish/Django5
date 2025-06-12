@@ -11,6 +11,56 @@
     </style>
 </head>
 <body>
+
+    {% comment %} Working with Database Returns New Queryset {% endcomment %}
+
+    {% comment %} <table>
+        <h3>Information</h3>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>City</th>
+        <th>Marks</th>
+        <th>Passing Year</th>
+        <th>Admission Date</th>
+        {% for student in students %}
+            <tr>
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.roll}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.marks}}</td>
+                <td>{{student.pass_date}}</td>
+                <td>{{student.admission_date}}</td>
+            </tr>
+        {% endfor %}
+    </table> {% endcomment %}
+
+    {% comment %} Working with Database Not Returns Queryset {% endcomment %}
+    {% comment %} <table>
+        <h3>Information</h3>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>City</th>
+        <th>Marks</th>
+        <th>Passing Year</th>
+        <th>Admission Date</th>
+        <tr>
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.roll}}</td>
+            <td>{{student.city}}</td>
+            <td>{{student.marks}}</td>
+            <td>{{student.pass_date}}</td>
+            <td>{{student.admission_date}}</td>
+
+        </tr>
+    </table> {% endcomment %}
+
+
+    {% comment %} Working with Database Field Lookups {% endcomment %}
+
     <table>
         <h3>Information</h3>
         <th>ID</th>
@@ -19,7 +69,8 @@
         <th>City</th>
         <th>Marks</th>
         <th>Passing Year</th>
-        {% comment %} {% for student in students %} {% endcomment %}
+        <th>Admission Date</th>
+        {% for student in students %}
             <tr>
                 <td>{{student.id}}</td>
                 <td>{{student.name}}</td>
@@ -27,10 +78,10 @@
                 <td>{{student.city}}</td>
                 <td>{{student.marks}}</td>
                 <td>{{student.pass_date}}</td>
+                <td>{{student.admission_date}}</td>
             </tr>
-        {% comment %} {% endfor %} {% endcomment %}
+        {% endfor %}
     </table>
-
 
 </body>
 </html>

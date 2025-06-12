@@ -7,6 +7,7 @@ class Student(models.Model):
     city = models.CharField(max_length=70)
     marks = models.IntegerField()
     pass_date = models.DateField()
+    admission_date = models.DateTimeField()
 
 
 
