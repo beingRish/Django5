@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# One to One Relationship
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # user = models.OneToOneField(User, on_delete=models.PROTECT)
@@ -23,3 +25,11 @@ class Page(models.Model):
 class Like(Page):
     page = models.OneToOneField(Page, on_delete=models.CASCADE, parent_link=True)
     likes = models.IntegerField()
+
+
+# Many to One Relationship
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.PROTECT)
+    # user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=255)
