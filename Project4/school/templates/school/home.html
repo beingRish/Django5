@@ -61,6 +61,31 @@
 
     {% comment %} Working with Database Field Lookups {% endcomment %}
 
+    {% comment %} <table>
+        <h3>Information</h3>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>City</th>
+        <th>Marks</th>
+        <th>Passing Year</th>
+        <th>Admission Date</th>
+        {% for student in students %}
+            <tr>
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.roll}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.marks}}</td>
+                <td>{{student.pass_date}}</td>
+                <td>{{student.admission_date}}</td>
+            </tr>
+        {% endfor %}
+    </table> {% endcomment %}
+
+
+    {% comment %} Working with Aggregate Function {% endcomment %}
+
     <table>
         <h3>Information</h3>
         <th>ID</th>
@@ -82,6 +107,19 @@
             </tr>
         {% endfor %}
     </table>
+    
+    <h1>Aggregate</h1><hr>
+
+    <h3>Average Data: {{average}}</h3>
+    <h3>Average: {{average.marks__avg}}</h3><hr>
+    <h3>Sum Data: {{total}}</h3>
+    <h3>Sum: {{total.marks__sum}}</h3><hr>
+    <h3>Minimum Data: {{minimum}}</h3>
+    <h3>Minimum: {{minimum.marks__min}}</h3><hr>
+    <h3>Maximum Data: {{maximum}}</h3>
+    <h3>Maximum: {{maximum.marks__max}}</h3><hr>
+    <h3>Count Data: {{totalCount}}</h3>
+    <h3>Count: {{totalCount.marks__count}}</h3><hr>
 
 </body>
 </html>
