@@ -230,14 +230,20 @@ from datetime import date, time
 
 
 
-# This home view is for 'Working with Database Q Objects'
+# This home view is for 'Working with Database Q Objects and Limit QuerySet'
 def home(request):
     # student_data = Student.objects.all()
     # student_data = Student.objects.filter(  Q(id=2) & Q(roll=102)   )
     # student_data = Student.objects.filter(  Q(id=2) | Q(roll=103)   )
     # student_data = Student.objects.filter(  ~Q(id=2)   )
     # student_data = Student.objects.filter(  Q(city='bokaro') & Q(marks__gt=100)   )
-    student_data = Student.objects.filter(  Q(city='bokaro') | Q(marks__gt=100)   )
+    # student_data = Student.objects.filter(  Q(city='bokaro') | Q(marks__gt=100)   )
+    
+    # Limit QuerySet
+    # student_data = Student.objects.all()[:5]
+    # student_data = Student.objects.all()[5:10]
+    # student_data = Student.objects.all()[:10:2]
+    student_data = Student.objects.all()[3:10:2]
     
 
     context = {
