@@ -1,1 +1,53 @@
 uvicorn Project6.asgi:application --reload
+
+
+Methods that return new querysets: These methods, which do not block, do not have explicit asynchronous versions.
+Example:- all(), filter(), exclude(), annotate(), order_by(), distinct() etc.
+
+Methods that do not return querysets: These methods, which are blocking, have corresponding asynchronous versions. The documentation for each method specifies its asynchronous counterpart, often following the pattern of adding an "a" prefix.
+Example:- get() to aget(), create() to acreate() etc.
+
+
+Asynchronous ORM Methods:
+
+aget(): Asynchronously retrieves a single object based on the provided parameters.
+
+acount(): Asynchronously count the number of objects in the queryset.
+
+afirst(): Asynchronously retrieves the first object from a queryset.
+
+alast(): Asynchronously retrieves the last object from queryset.
+
+aexists(): Asynchronously checks if any objects exist in the queryset.
+
+alatest(): Asynchronously retrieves the latest object based on a specified field, similar to latest(), It raises a DoesNotExist exception if not objects match the crieteria.
+
+aearliest(): Asynchronously fetches the earliest object based on a specified field, akin to earliest(). Like alatest(), it raises a DoesNotExist exception if no matching objects are found.
+
+acontains(): Asynchronously checks if any objects in the queryset contain a specified value. This method is useful for filtering results based on substring matches.
+
+aexplain(): Asynchronously provides an explanation of how a query will be executed, returning details about the SQL query plan. This method is beneficial for performance tuning and understanding query efficiency.
+
+asave(): Asynchronously saves an objects to the database.
+
+acreate(): Asynchronously creates a new object in the database.
+
+aget_or_create(): Asynchronously retrieves an object or creates it if it does not exist.
+
+abulk_create(): Asynchronously creates multiple instances of a model in a single query. This method improves performance when inserting multiple records at once.
+
+aupdate(): Asynchronously updates objects in the database.
+
+aupdate_or_create(): Asynchronously updates an existing object or creates a new one if it does not exists. This method simplifies the logic for handling both creation and updating in one call.
+
+abulk_update(): Asynchronously updates multiple objects in the database in a single query. This is more efficient than updating each object individually.
+
+adelete(): Asynchronously deletes from the database.
+
+ain_bulk(): Asynchronously retrieves multiple objects from the database by their primary keys. This method is efficient for fetching large sets of records based on their IDs.
+
+aaggregate(): Asynchronously aaggregates values from the queryset.
+
+aiterator(): Provides an asynchronous iterator over the queryset, allowing for efficient iteration without loading all records into memory at once. This is particularly useful for processing large datasets.
+
+aprefetch_related_objects(): Asynchronously prefetches related objects for a queryset, optimizing database access by reducing the number of queries needed to retrieve related data.

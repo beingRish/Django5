@@ -6,7 +6,26 @@ import asyncio
 from asgiref.sync import sync_to_async, async_to_sync
 from myapp.models import Student
 
-def home(request):
+async def home(request):
+    async for student in Student.objects.all():
+        print(f"name: {student.name} age: {student.age} email: {student.email}")
+
+    # await Student.objects.acreate(
+    #     name='kunal',
+    #     age=30,
+    #     email='kunal@example.com'
+    # )
+
+    # total_student = await Student.objects.acount()
+    # print(total_student)
+
+    # student = await Student.objects.aget(pk=1)
+    # print(f"name: {student.name} age: {student.age} email: {student.email}")
+
+    # student = await Student.objects.aget(pk=4)
+    # await student.adelete()
+
+
     return render(request, 'myapp/home.html')
 
 
