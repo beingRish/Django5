@@ -39,6 +39,7 @@ def contact(request):
 
 #Synchronous View
 def sync_view(request):
+    print("Inside Sync view")
     start_time = time.time()
     responses = []
     for _ in range(5):
@@ -56,6 +57,7 @@ def sync_view(request):
 
 #Asynchronous View
 async def async_view(request):
+    print("Inside Async view")
     start_time = time.time()
 
     async with httpx.AsyncClient() as client:
