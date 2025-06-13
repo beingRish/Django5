@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from myapp.forms import ContactForm
 from django.views import View
+from django.views.generic.base import TemplateView
 
 def myfunview1(request):
     return HttpResponse("Hello Function Based View")
@@ -82,3 +83,29 @@ class ContactClassView(View):
         if form.is_valid():
             print(form.cleaned_data['name'])
             return HttpResponse('Thank You Form Submitted !!')
+        
+
+# TemplateView
+class AboutTemplateView(TemplateView):
+    template_name = 'myapp/about.html'
+
+class ContactTemplateView(TemplateView):
+    template_name = 'myapp/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = 'Rishabh'
+        context['roll'] = 101
+
+        return context
+
+class ProfileTemplateView(TemplateView):
+    template_name = 'myapp/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = 'Rishabh'
+        print(context)
+        print(kwargs)
+
+        return context

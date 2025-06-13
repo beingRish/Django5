@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Contact Page</h1>
+    <h1>Name: {{name}}</h1>
+    <h1>Roll: {{roll}}</h1>
+    <h1>Course: {{course}}</h1>
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}

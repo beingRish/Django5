@@ -1,5 +1,7 @@
 from django.urls import path
-from myapp.views import myfunview1, myfunview2, homefunview, aboutfunview, newsfunview, contactfunview, MyClassView1, MyClassView2, MyClassView3, MyChildClassView3, HomeClassView, AboutClassView, NewsClassView, ContactClassView
+from myapp.views import myfunview1, myfunview2, homefunview, aboutfunview, newsfunview, contactfunview, MyClassView1, MyClassView2, MyClassView3, MyChildClassView3, HomeClassView, AboutClassView, NewsClassView, ContactClassView, AboutTemplateView, ContactTemplateView, ProfileTemplateView
+from django.views.generic.base import TemplateView
+from myapp import views
 
 urlpatterns = [
     # Urls for Function Based View
@@ -23,5 +25,14 @@ urlpatterns = [
     path('newscl/', NewsClassView.as_view(template_name='myapp/news.html'), name='newscl'),
     path('newscl2/', NewsClassView.as_view(template_name='myapp/news2.html'), name='newscl2'),
     path('contactcl/', ContactClassView.as_view(), name='contact_class_view'),
+
+
+    # TemplateView
+    path('home/', TemplateView.as_view(template_name='myapp/home.html'), name='home'),
+    path('index/', views.TemplateView.as_view(template_name='myapp/index.html'), name='home'),
+    path('about/', AboutTemplateView.as_view(), name='about'),
+    # path('contact/', ContactTemplateView.as_view(), name='about'),
+    path('contact/', ContactTemplateView.as_view(extra_context={'course':'Python'}), name='contact'),
+    path('profile/<int:id>', ProfileTemplateView.as_view(), name='profile'),
 
 ]
