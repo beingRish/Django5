@@ -18,6 +18,7 @@
 
 # Ignore static/media folders (optional)
 **/staticfiles/
+**/static/
 **/media/
 
 # Node/Angular build/cache folders (if you add Angular apps)

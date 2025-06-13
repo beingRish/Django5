@@ -3,6 +3,8 @@ from django.http import JsonResponse
 import httpx
 import time
 import asyncio
+from asgiref.sync import sync_to_async, async_to_sync
+from myapp.models import Student
 
 def home(request):
     return render(request, 'myapp/home.html')
@@ -49,3 +51,42 @@ async def async_view(request):
         'total_request': 5,
         'time_taken': f"{time_taken:.2f} seconds"
     })
+
+
+# Synchronous to Asynchronous
+
+# Synchronous function
+def my_sync_function1(x):
+    return x * 2
+
+# Asynchronous function
+async def my_async_function1():
+    result = await sync_to_async(my_sync_function1)(5)
+    print(result)
+
+
+
+# Asynchronous to Synchronous
+
+# Asynchronous function
+async def my_async_function2(x):
+    return x * 2
+
+def my_sync_function():
+    result = async_to_sync(my_async_function2)(5)
+    print(result)
+
+# # heper method
+# def get_student_data():
+#     return list(Student.objects.filter(age=20).values())
+
+# # view
+# async def student_data(request):
+#     student_data = await sync_to_async(get_student_data)()
+#     return JsonResponse({'data': student_data})
+
+
+# # Direct view without helper method
+async def student_data(request):
+    student_data = await sync_to_async(lambda: list(Student.objects.filter(age=20).values()))()
+    return JsonResponse({'data': student_data})
