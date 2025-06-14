@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views import View
 from myapp.models import Student
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView
+from myapp.forms import ContactForm
+from django.contrib import messages
+from myapp.forms import StudentForm
 
 class AllStudentView(View):
     def get(self, request):
@@ -76,3 +80,52 @@ class StudentDetailView3(DetailView):
         context = super().get_context_data(**kwargs)
         context['students'] = Student.objects.all().order_by('name')
         return context
+    
+
+# Form View
+class ContactFormView(FormView):
+    template_name = 'myapp/contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+    initial = {'name': 'Sonam', 'email': 'sonam@example.com'}
+
+    def form_valid(self, form):
+        # print(form)
+        print(form.cleaned_data['name'])
+        print(form.cleaned_data['email'])
+        print(form.cleaned_data['msg'])
+        return super().form_valid(form)
+        # return HttpResponse('Thank You form submitted !!')
+    
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'There was an error with your form submission.')
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["extra"] = 'Hello FormView'
+        return context
+    
+class StudentFormView(FormView):
+    template_name = 'myapp/register.html'
+    form_class = StudentForm
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        roll = form.cleaned_data['roll']
+        course = form.cleaned_data['course']
+        student = Student(
+            name = name,
+            roll = roll,
+            course = course
+        )
+        student.save()
+        return HttpResponse('Thank You form submitted !!')
+    
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'There was an error with your form submission.')
+        return super().form_valid(form)
+    
+    

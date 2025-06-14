@@ -1,5 +1,6 @@
 from django.urls import path
-from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3
+from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3, ContactFormView, StudentFormView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', AllStudentView.as_view(), name='all_student'),
@@ -17,5 +18,9 @@ urlpatterns = [
     path('student2/<int:pk>/', StudentDetailView2.as_view(), name='studentdetail2'),
     path('student3/<int:pk>/', StudentDetailView3.as_view(), name='studentdetail3'),
 
-
+    # Urls for FormView
+    path('contact/', ContactFormView.as_view(), name='contact'),
+    path('thanks/', TemplateView.as_view(template_name='myapp/thankyou.html'), name='thanks'),
+    path('register/', StudentFormView.as_view(), name='register'),
+    
 ]
