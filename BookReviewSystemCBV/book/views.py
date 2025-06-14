@@ -5,44 +5,63 @@ from book.forms import BookForm
 from book.models import Book
 from django.contrib import messages
 
-# Create your views here.
-def create_book(request):
-    if request.method == 'POST':
+class BookCreateView(View):
+    def get(self, request):
+        form = BookForm()
+        return render(request, 'book/book_form.html', {'form': form})
+    
+    def post(self, request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Book created successfully!')
             return redirect('book-create')
-    else:
-        form = BookForm()
-    return render(request, 'book/book_form.html', {'form': form})
+        return render(request, 'book/book_form.html', {'form': form})
 
-def book_list(request):
-    genre = request.GET.get('genre')
-    if genre:
-        books = Book.objects.filter(genre=genre)
-    else:
-        books = Book.objects.all().order_by('-created_at').order_by('-created_at')
-    return render(request, 'book/book_list.html', {'books': books})
+    
+class BookListView(TemplateView):
+    template_name = 'book/book_list.html'
 
-def book_detail(request, pk):
-    book = Book.objects.get(pk=pk)
-    return render(request, 'book/book_detail.html', {'book': book})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        genre = self.request.GET.get('genre')
+        if genre:
+            context['books'] = Book.objects.filter(genre=genre).order_by('-created_at')
+        else:
+            context['books'] = Book.objects.all().order_by('-created_at')
+        return context
 
-def book_update(request, pk):
-    book = Book.objects.get(pk=pk)
-    if request.method == 'POST':
+class BookDetailView(TemplateView):
+    template_name = 'book/book_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = kwargs.get('pk')
+        context['book'] = Book.objects.get(pk=pk)
+        return context
+
+class BookUpdateView(View):
+    def get(self, request, pk):
+        book = Book.objects.get(pk=pk)
+        form = BookForm(instance=book)
+        return render(request, 'book/book_form.html', {'form': form, 'is_edit': True})
+    
+    def post(self, request, pk):
+        book = Book.objects.get(pk=pk)
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
             messages.success(request, 'Book updated Successfully!')
-            return redirect('book-update', pk=book.pk)
-    else:
-        form = BookForm(instance=book)
-    return render(request, 'book/book_form.html', {'form': form, 'is_edit': True})
+            return redirect('book-update', pk=pk)
+        return render(request, 'book/book_form.html', {'form': form, 'is_edit': True})
 
-def book_delete(request, pk):
-    book = Book.objects.get(pk=pk)
-    book.delete()
-    messages.success(request, 'Book deleted successfully!')
-    return redirect('book-list')
+class BookDeleteView(RedirectView):
+    pattern_name = 'book-list'
+
+    def get_redirect_url(self, *args, **kwargs):
+        pk = kwargs.get('pk')
+        book = Book.objects.get(pk=pk)
+        book.delete()
+        messages.success(self.request, 'Book deleted successfully!')
+        # Return URL for book-list without passing any kwargs
+        return super().get_redirect_url()
