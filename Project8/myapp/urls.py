@@ -1,9 +1,10 @@
 from django.urls import path
-from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3, ContactFormView, StudentFormView, CandidateCreateView, CandidateUpdateView
+from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3, ContactFormView, StudentFormView, CandidateCreateView, CandidateUpdateView, CandidateDeleteView
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('thanks/', TemplateView.as_view(template_name='myapp/thankyou.html'), name='thanks'),
+    path('success/', TemplateView.as_view(template_name='myapp/success.html'), name='success'),
     path('', AllStudentView.as_view(), name='all_student'),
     path('<int:pk>/', SingleStudentView.as_view(), name='single_student'),
 
@@ -28,5 +29,8 @@ urlpatterns = [
 
     # Urls for UpdateView
     path('update/<int:pk>', CandidateUpdateView.as_view(), name='update'),
+
+    # Urls for DeleteView
+    path('delete/<int:pk>', CandidateDeleteView.as_view(), name='delete'),
 
 ]

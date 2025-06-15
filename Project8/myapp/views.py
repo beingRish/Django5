@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
 from myapp.forms import StudentForm, ContactForm, CandidateForm
 from django.contrib import messages
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
 
 class AllStudentView(View):
@@ -130,7 +130,7 @@ class StudentFormView(FormView):
         return super().form_valid(form)
     
 
-# Create View
+# # Create View
 # class CandidateCreateView(CreateView):
 #     model = Candidate
 #     fields = ['name', 'email', 'password']
@@ -150,7 +150,7 @@ class CandidateCreateView(CreateView):
     # success_url = '/thanks/'
 
 
-# Update View
+# # Update View
 # class CandidateUpdateView(UpdateView):
 #     model = Candidate
 #     fields = ['name', 'email', 'password']
@@ -166,3 +166,14 @@ class CandidateUpdateView(UpdateView):
     model = Candidate
     form_class = CandidateForm
     template_name = 'myapp/candidate_register.html'
+
+
+# Delete View
+# class CandidateDeleteView(DeleteView):
+#     model = Candidate
+#     success_url = '/success/'
+
+class CandidateDeleteView(DeleteView):
+    model = Candidate
+    success_url = '/success/'
+    template_name = 'myapp/candidate_delete.html'
