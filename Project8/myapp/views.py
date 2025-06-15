@@ -1,12 +1,14 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
-from myapp.models import Student
+from myapp.models import Student, Candidate 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
-from myapp.forms import ContactForm
+from myapp.forms import ContactForm, CandidateForm
 from django.contrib import messages
 from myapp.forms import StudentForm
+from django.views.generic.edit import CreateView
+from django import forms
 
 class AllStudentView(View):
     def get(self, request):
@@ -128,4 +130,23 @@ class StudentFormView(FormView):
         messages.error(self.request, 'There was an error with your form submission.')
         return super().form_valid(form)
     
+
+# Create View
+# class CandidateCreateView(CreateView):
+#     model = Candidate
+#     fields = ['name', 'email', 'password']
+#     # success_url = '/thanks/'
+#     template_name = 'myapp/candidate_register.html'
+
+#     def get_form(self):
+#         form = super().get_form()
+#         form.fields['name'].widget = forms.TextInput(attrs={'class': 'myname'})
+#         form.fields['password'].widget = forms.PasswordInput(attrs={'class': 'mypass'})
+#         return form
     
+
+class CandidateCreateView(CreateView):
+    form_class = CandidateForm
+    template_name = 'myapp/candidate_register.html'
+    # success_url = '/thanks/'
+
