@@ -17,5 +17,5 @@ class CandidateForm(forms.ModelForm):
         fields = ['name', 'email', 'password']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'myname'}),
-            'password': forms.PasswordInput(attrs={'class': 'mypass'}),
+            'password': forms.PasswordInput(render_value=True, attrs={'class': 'mypass'}),
         }

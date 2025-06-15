@@ -4,10 +4,9 @@ from myapp.models import Student, Candidate
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
-from myapp.forms import ContactForm, CandidateForm
+from myapp.forms import StudentForm, ContactForm, CandidateForm
 from django.contrib import messages
-from myapp.forms import StudentForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django import forms
 
 class AllStudentView(View):
@@ -150,3 +149,20 @@ class CandidateCreateView(CreateView):
     template_name = 'myapp/candidate_register.html'
     # success_url = '/thanks/'
 
+
+# Update View
+# class CandidateUpdateView(UpdateView):
+#     model = Candidate
+#     fields = ['name', 'email', 'password']
+#     template_name = 'myapp/candidate_register.html'
+
+#     def get_form(self):
+#         form = super().get_form()
+#         form.fields['name'].widget = forms.TextInput(attrs={'class': 'myname'})
+#         form.fields['password'].widget = forms.PasswordInput(render_value=True, attrs={'class': 'mypass'})
+#         return form
+
+class CandidateUpdateView(UpdateView):
+    model = Candidate
+    form_class = CandidateForm
+    template_name = 'myapp/candidate_register.html'

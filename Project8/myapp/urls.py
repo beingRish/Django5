@@ -1,5 +1,5 @@
 from django.urls import path
-from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3, ContactFormView, StudentFormView, CandidateCreateView
+from myapp.views import AllStudentView, SingleStudentView, StudentListView, StudentListView1, StudentListView2, StudentListView3, StudentDetailView, StudentDetailView1, StudentDetailView2, StudentDetailView3, ContactFormView, StudentFormView, CandidateCreateView, CandidateUpdateView
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
@@ -25,5 +25,8 @@ urlpatterns = [
     
     # Urls for CreateView
     path('create/', CandidateCreateView.as_view(), name='candidatecreate'),
+
+    # Urls for UpdateView
+    path('update/<int:pk>', CandidateUpdateView.as_view(), name='update'),
 
 ]
