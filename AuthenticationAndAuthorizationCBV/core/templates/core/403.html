@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403 Forbidden</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #721c24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            background-color: #f5c6cb;
+            padding: 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .error-container h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .error-container p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .home-button {
+            background-color: #721c24;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .home-button:hover {
+            background-color: #501416;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>403 - Access Forbidden</h1>
+        <p>Sorry, You do not have permission to view this page.</p>
+        <a href="{% url 'home' %}" class="home-button">Return to Home</a>
+    </div>
+</body>
+</html>
