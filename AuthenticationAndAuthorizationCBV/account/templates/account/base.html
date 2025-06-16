@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header>
+        <nav class="bg-gray-800 text-white px-4 py-3 shadow-md">
+            <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between">
+                <!-- Brand -->
+                <a href="{% url 'home' %}" class="flex items-center space-x-3 hover:text-gray-300">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Auth System</span>
+                </a>
+
+                <!-- Hamburger button (visible on small screens) -->
+                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul class="font-medium flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0">
+                        <li>
+                            <a href="{% url 'home' %}" class="block py-2 px-3 hover:text-gray-300" aria-current="page">Home</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            {% if user.is_seller %}
+                                <li>
+                                    <a href="{% url 'seller_dashboard' %}" class="block py-2 px-3 hover:text-gray-300">Seller Dashboard</a>
+                                </li>
+                            {% elif user.is_customer %}
+                                <li>
+                                    <a href="{% url 'customer_dashboard' %}" class="block py-2 px-3 hover:text-gray-300">Customer Dashboard</a>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="px-3 py-1 text-sm text-white bg-rose-700 rounded-lg hover:bg-rose-900 mt-2 md:mt-0">Logout</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'register' %}" class="block py-2 px-3 hover:text-gray-300">Register</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'login' %}" class="block py-2 px-3 hover:text-gray-300">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow text-white bg-gray-600">
+        {% if messages %}
+            {% for message in messages %}
+                <span class="{{message.tags}} bg-rose-600 p-2 font-bold">{{message}}</span><br><br>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock content %}
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.querySelector('[data-collapse-toggle]');
+            const navMenu = document.getElementById('navbar-default');
+
+            toggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
