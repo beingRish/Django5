@@ -12,11 +12,15 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.decorators import login_not_required
+from django.utils.decorators import method_decorator
 
+@method_decorator(login_not_required, name='dispatch')
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'account/home.html')
-    
+
+@method_decorator(login_not_required, name='dispatch')
 class LoginView(View):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -72,6 +76,7 @@ class LoginView(View):
             return redirect('login')
     
     
+@method_decorator(login_not_required, name='dispatch')
 class RegistrationView(FormView):
     form_class = RegistrationForm
     template_name = 'account/register.html'
@@ -121,6 +126,7 @@ def activate_account(request, uidb64, token):
         return redirect('login')
   
     
+@method_decorator(login_not_required, name='dispatch')
 class CustomPasswordResetView(FormView):
     template_name = 'account/password_reset.html'
     form_class = PasswordResetForm
@@ -142,6 +148,7 @@ class CustomPasswordResetView(FormView):
         return super().form_valid(form)
     
     
+@method_decorator(login_not_required, name='dispatch')
 class PasswordResetConfirmView(View):
     template_name = 'account/password_reset_confirm.html'
 

@@ -7,11 +7,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.misins import IsCustomerMixin
 
-class CustomerDashboardView(View):
+class CustomerDashboardView(IsCustomerMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'customer/dashboard.html')
     
-class CustomerPasswordChangeView(PasswordChangeView):
+class CustomerPasswordChangeView(IsCustomerMixin, PasswordChangeView):
     template_name = 'customer/password_change.html'
     success_url = reverse_lazy('login')
     
