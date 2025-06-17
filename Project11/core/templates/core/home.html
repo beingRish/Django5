@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <ul>
+        <li><a href="{% url 'customer:dashboard' %}">Customer Dashboard</a></li><br>
+        <li><a href="{% url 'seller:profile' %}">Seller Profile</a></li><br>
+        <li><a href="{% url 'tocustomer' %}">Redirect To Customer</a></li><br>
+    </ul>
+</body>
+</html>
