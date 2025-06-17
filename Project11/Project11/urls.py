@@ -8,4 +8,6 @@ urlpatterns = [
     path('customer/', include('customer.urls')),
     # path('customer/', include('customer.urls', namespace='v1')),
     # path('customer/', include('customer.urls', namespace='v2')),
+
+    path('', include('myapp.urls'))
 ]
