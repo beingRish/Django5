@@ -1,0 +1,1 @@
+uvicorn Project10.asgi:application --reload
