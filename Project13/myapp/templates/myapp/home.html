@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Books Count</h1>
+    {% for author in authorBookCount %}
+        <p>{{ author.name }} - {{ author.book_count }} books</p>
+    {% endfor %}
+    
+    <h1>Author Price Count</h1>
+    {% for author in authorPriceCount %}
+    <p>{{ author.name }} - {{ author.price_count }} RS.</p>
+    {% endfor %}
+    
+    <h1>Books Final Price</h1>
+    {% for book in BookFinalPrice %}
+    <p>{{ book.title }} - {{ book.final_price }} RS.</p>
+    {% endfor %}
+
+    <h1>Books Filter</h1>
+    {% for author in authorBook_Filter %}
+        <p>{{ author.name }} - {{ author.book_Filter }} books</p>
+    {% endfor %}
+
+    <h1>Author Book Stats</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Author Name</th>
+                <th>Book Count</th>
+                <th>Average Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in results %}
+            <tr>
+                <td>{{ item.author__name }}</td>
+                <td>{{ item.book_count }}</td>
+                <td>₹{{ item.avg_price|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+</body>
+</html>
